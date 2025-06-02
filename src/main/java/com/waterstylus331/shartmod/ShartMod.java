@@ -1,7 +1,11 @@
 package com.waterstylus331.shartmod;
 
 import com.mojang.logging.LogUtils;
+import com.waterstylus331.shartmod.entity.ModEntities;
+import com.waterstylus331.shartmod.item.ModItems;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -28,6 +32,8 @@ public class ShartMod
         MinecraftForge.EVENT_BUS.register(this);
 
         ShartModCreativeTab.register(modEventBus);
+        ModItems.register(modEventBus);
+        ModEntities.register(modEventBus);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event)
@@ -54,11 +60,8 @@ public class ShartMod
     public static class ClientModEvents
     {
         @SubscribeEvent
-        public static void onClientSetup(FMLClientSetupEvent event)
-        {
-            // Some client setup code
-            LOGGER.info("HELLO FROM CLIENT SETUP");
-            LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
+        public static void onClientSetup(FMLClientSetupEvent event) {
+            EntityRenderers.register(ModEntities.POOP_ENTITY.get(), ThrownItemRenderer::new);
         }
     }
 }

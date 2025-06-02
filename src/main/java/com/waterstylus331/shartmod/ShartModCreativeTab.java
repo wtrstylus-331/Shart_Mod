@@ -1,5 +1,6 @@
 package com.waterstylus331.shartmod;
 
+import com.waterstylus331.shartmod.item.ModItems;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -15,6 +16,9 @@ public class ShartModCreativeTab {
     public static final RegistryObject<CreativeModeTab> MAIN_TAB = TABS.register("shartmod_tab",
             () -> CreativeModeTab.builder()
                     .title(Component.translatable("creativetab.shartmod.shartmod_items"))
+                    .displayItems((params, output) -> {
+                        output.accept(ModItems.POOP_ITEM.get());
+                    })
                     .build());
 
     public static void register(IEventBus iEventBus) {
