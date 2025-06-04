@@ -3,5 +3,7 @@
 
   "block.shartmod.poop_block": "Poop Block",
 
-  "item.shartmod.poop": "Poop"
+  "item.shartmod.poop": "Poop",
+
+  "effect.shartmod.stinky": "Stinky"
 }

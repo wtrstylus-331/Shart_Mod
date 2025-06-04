@@ -1,13 +1,15 @@
 package com.waterstylus331.shartmod.block;
 
+import com.waterstylus331.shartmod.effect.ModEffects;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.Vec3;
 
 public class PoopBlock extends Block {
     public PoopBlock(Properties p_49795_) {
@@ -16,7 +18,12 @@ public class PoopBlock extends Block {
 
     @Override
     public void stepOn(Level level, BlockPos blockpos, BlockState blockstate, Entity entity) {
-        entity.makeStuckInBlock(blockstate, new Vec3(0.5, 1, 0.5));
+        if (level.isClientSide()) return;
+
+        if (entity instanceof Player) {
+            Player plr = (Player) entity;
+            plr.addEffect(new MobEffectInstance(ModEffects.STINKY.getHolder().get(), 900));
+        }
         super.stepOn(level, blockpos, blockstate, entity);
     }
 

@@ -2,6 +2,7 @@ package com.waterstylus331.shartmod;
 
 import com.mojang.logging.LogUtils;
 import com.waterstylus331.shartmod.block.ModBlocks;
+import com.waterstylus331.shartmod.effect.ModEffects;
 import com.waterstylus331.shartmod.entity.ModEntities;
 import com.waterstylus331.shartmod.item.ModItems;
 import net.minecraft.client.Minecraft;
@@ -38,6 +39,7 @@ public class ShartMod
         ModBlocks.register(modEventBus);
         ShartModCreativeTab.register(modEventBus);
         ModEntities.register(modEventBus);
+        ModEffects.register(modEventBus);
 
         modEventBus.addListener(this::addCreative);
     }
